@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Display</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    body{
+      background: url('/images/7.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-size: 30px;
+      color: white;
+    }
+    #weather-container {
+      width: 30%;
+      height: 500px;
+      text-align: center;
+      margin: auto;
+      margin-top: 150px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="weather-container">
+    <h2>Weather Information</h2>
+    <p id="location"></p>
+    <p id="temperature"></p>
+    <p id="description"></p>
+    <img id="weather-icon" alt="Weather Icon">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(fetchWeather, handleLocationError);
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    });
+
+    function fetchWeather(position) {
+      const { latitude, longitude } = position.coords;
+      const apiKey = "c2388fa0c1f5a23265cfa70529a1b0e7"; // Replace with your OpenWeatherMap API key
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => displayWeather(data))
+        .catch(error => console.error("Error fetching weather data:", error));
+    }
+
+    function displayWeather(data) {
+  const locationElement = document.getElementById("location");
+  const temperatureElement = document.getElementById("temperature");
+  const descriptionElement = document.getElementById("description");
+  const iconElement = document.getElementById("weather-icon");
+
+  locationElement.textContent = `Location: ${data.name}`;
+  
+  // Convert temperature from Kelvin to Celsius
+  const temperatureCelsius = data.main.temp - 273.15;
+  temperatureElement.textContent = `Temperature: ${temperatureCelsius.toFixed(2)} °C`;
+
+  descriptionElement.textContent = `Description: ${data.weather[0].description}`;
+  
+  // Set weather icon based on condition code
+  const iconCode = data.weather[0].id;
+  const iconUrl = getWeatherIconUrl(iconCode);
+  iconElement.src = iconUrl;
+}
+
+
+    function handleLocationError(error) {
+      console.error("Error getting location:", error);
+    }
+
+    function getWeatherIconUrl(iconCode, isDay) {
+  const timeOfDay = isDay ? 'd' : 'n'; // Use 'd' for day and 'n' for night
+  const baseUrl = "https://openweathermap.org/img/wn/";
+  const imageSize = "@2x.png"; // You can adjust the size as needed
+
+  // Example mappings based on the provided documentation
+  switch (iconCode) {
+    case 200:
+    case 201:
+    case 202:
+    case 210:
+    case 211:
+    case 212:
+    case 221:
+    case 230:
+    case 231:
+    case 232:
+      return baseUrl + `11${timeOfDay}` + imageSize;
+    case 300:
+    case 301:
+    case 302:
+    case 310:
+    case 311:
+    case 312:
+    case 313:
+    case 314:
+    case 321:
+      return baseUrl + `09${timeOfDay}` + imageSize;
+    case 500:
+    case 501:
+    case 502:
+    case 503:
+    case 504:
+    case 511:
+    case 520:
+    case 521:
+    case 522:
+    case 531:
+      return baseUrl + `10${timeOfDay}` + imageSize;
+    case 600:
+    case 601:
+    case 602:
+    case 611:
+    case 612:
+    case 613:
+    case 615:
+    case 616:
+    case 620:
+    case 621:
+    case 622:
+      return baseUrl + `13${timeOfDay}` + imageSize;
+    case 701:
+    case 711:
+    case 721:
+    case 731:
+    case 741:
+    case 751:
+    case 761:
+    case 762:
+    case 771:
+    case 781:
+      return baseUrl + `50${timeOfDay}` + imageSize;
+    case 800:
+      return baseUrl + `01${timeOfDay}` + imageSize;
+    case 801:
+      return baseUrl + `02${timeOfDay}` + imageSize;
+    case 802:
+      return baseUrl + `03${timeOfDay}` + imageSize;
+    case 803:
+    case 804:
+      return baseUrl + `04${timeOfDay}` + imageSize;
+    default:
+      return baseUrl + "unknown" + imageSize;
+  }
+}
+
+
+
+  </script>
+</body>
+</html>

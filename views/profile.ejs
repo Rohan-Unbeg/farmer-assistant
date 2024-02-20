@@ -1,0 +1,428 @@
+<%- include("./partials/header") %>
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a
+      class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+      href="javascript:void(0)"
+      onclick="myFunction()"
+      title="Toggle Navigation Menu"
+      ><i class="fa fa-bars"></i
+    ></a>
+    <a href="/" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a
+      href="/weather"
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
+      >Weather</a
+    >
+    <a
+      href="/login"
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
+      >Login</a
+    >
+    <a
+      href="/register"
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
+      >Register</a
+    >
+    <a
+      href="/contact"
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
+      >Contact</a
+    >
+
+    <a
+      href="javascript:void(0)"
+      class="w3-padding-large w3-hover-red w3-hide-small w3-right"
+      ><i class="fa fa-search"></i
+    ></a>
+  </div>
+</div>
+
+<div
+  id="navDemo"
+  class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
+  style="margin-top: 46px"
+>
+  <a
+    href="#band"
+    class="w3-bar-item w3-button w3-padding-large"
+    onclick="myFunction()"
+    >BAND</a
+  >
+  <a
+    href="#tour"
+    class="w3-bar-item w3-button w3-padding-large"
+    onclick="myFunction()"
+    >TOUR</a
+  >
+  <a
+    href="#contact"
+    class="w3-bar-item w3-button w3-padding-large"
+    onclick="myFunction()"
+    >CONTACT</a
+  >
+  <a
+    href="#"
+    class="w3-bar-item w3-button w3-padding-large"
+    onclick="myFunction()"
+    >MERCH</a
+  >
+</div>
+
+<div class="slider">
+  <div class="slide-track">
+    <h1>
+      <a
+        href="https://mahadbt.maharashtra.gov.in/Farmer/SchemeData/SchemeData?str=E9DDFA703C38E51AC7B56240D6D84F28"
+        >Pradhan Mantri Krishi Sinchayee Yojana - Per Drop More Crop
+        (Micro-irrigation Component)</a
+      >
+    </h1>
+
+    <h1>
+      <a
+        href="https://mahadbt.maharashtra.gov.in/Farmer/SchemeData/SchemeData?str=E9DDFA703C38E51A23C0254248DAFF28"
+        >Sub-mission on Farm Mechanization</a
+      >
+    </h1>
+
+    <h1>
+      <a
+        href="https://mahadbt.maharashtra.gov.in/Farmer/SchemeData/SchemeData?str=E9DDFA703C38E51A64CDF3CE7D352F8F"
+        >National Food Security Mission: Food grains, Oil seeds, Sugarcane and
+        Cotton</a
+      >
+    </h1>
+  </div>
+  <div class="slider-heading">
+    As per the Government guidelines the farmer schemes circulam avaialble.
+  </div>
+</div>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans";
+  }
+
+  body {
+    background: url("/images/8.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+
+  .content-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0.5rem;
+    margin-top: 25px;
+  }
+
+  .news-card {
+    border: 0px solid aqua;
+    margin: 0.5rem;
+    position: relative;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    flex: 1;
+    min-width: 290px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+  }
+
+  @media (min-width: 900px) {
+    .news-card {
+      height: 20rem;
+    }
+  }
+
+  .news-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0)
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 80%);
+    z-index: 0;
+  }
+
+  .news-card__card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /*     background: rgba(255,0,0,.5); */
+  }
+
+  .news-card__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 3s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    z-index: -1;
+  }
+
+  .news-card__text-wrapper {
+    position: absolute;
+    bottom: 0rem;
+    padding: 1rem;
+    color: white;
+    /*     background-color: rgba(0, 0, 0, 0.4); */
+    transition: background-color 1.5s ease;
+  }
+
+  .news-card__title {
+    transition: color 1s ease;
+    margin-bottom: 0.5rem;
+  }
+
+  .news-card__post-date {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+  }
+
+  .news-card__details-wrapper {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 1.5s ease, opacity 1s ease;
+  }
+
+  @media (min-width: 900px) {
+    .news-card:hover .news-card__details-wrapper {
+      max-height: 20rem;
+      opacity: 1;
+    }
+    .news-card:hover .news-card__text-wrapper {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .news-card:hover .news-card__title {
+      color: yellow;
+    }
+    .news-card:hover .news-card__image {
+      transform: scale(1.2);
+      z-index: -1;
+    }
+  }
+
+  .news-card__excerpt {
+    font-weight: 300;
+  }
+
+  .news-card__read-more {
+    background: black;
+    color: #bbb;
+    display: block;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+    border: 1px solid #444;
+    font-size: 0.8rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-decoration: none;
+    width: 7rem;
+    margin-left: auto;
+    position: relative;
+    z-index: 5;
+  }
+
+  .news-card__read-more i {
+    position: relative;
+    left: 0.2rem;
+    color: #888;
+    transition: left 0.5s ease, color 0.6s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .news-card__read-more:hover i {
+    left: 0.5rem;
+    color: yellow;
+  }
+</style>
+
+<h1>Welcome to Profile</h1>
+<a class="btn btn-danger" href="/logout">logout</a>
+
+<h1>Crop Selection Based on pH</h1>
+
+<label for="soilTest">Have you conducted a pH soil test?</label>
+<select id="soilTest" onchange="togglePhSelect()">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+
+<div id="phSelectContainer" style="display: none">
+  <label for="phSelect">Select pH level:</label>
+  <select id="phSelect">
+    <option value="">Select pH level</option>
+    <option value="5.5">5.5</option>
+    <option value="6.0">6.0</option>
+    <option value="6.5">6.5</option>
+    <option value="7.0">7.0</option>
+    <option value="7.5">7.5</option>
+    <!-- Add more pH values as needed -->
+  </select>
+</div>
+
+<div id="cropCardsContainer" class="content-wrapper"></div>
+
+<script>
+  const soilTestSelect = document.getElementById("soilTest");
+  const phSelectContainer = document.getElementById("phSelectContainer");
+  const phSelect = document.getElementById("phSelect");
+  const cropCardsContainer = document.getElementById("cropCardsContainer");
+
+  const cropRecommendations = {
+    5.5: [
+      "Blueberries",
+      "Potatoes",
+      "Radishes",
+      "Spinach",
+      "Cranberries",
+      "Pineapples",
+    ],
+    "6.0": ["Carrots", "Cucumbers", "Lettuce", "Beans", "Garlic", "Onions"],
+    6.5: [
+      "Tomatoes",
+      "Peppers",
+      "Strawberries",
+      "Beets",
+      "Broccoli",
+      "Cabbage",
+    ],
+    "7.0": ["Rice", "Wheat", "Mangoes", "Peaches", "Pears", "Apples"],
+    7.5: ["Sugarcane", "Bananas", "Oranges", "Lemons", "Grapes", "Watermelons"],
+    // Add more pH levels and crop recommendations as needed
+  };
+
+  const cropDescriptions = {
+    Blueberries:
+      "Blueberries are well-suited for acidic soil. They are rich in antioxidants and vitamins.",
+    Potatoes:
+      "Potatoes thrive in slightly acidic soil. They are a staple crop and versatile in cooking.",
+    Radishes:
+      "Radishes prefer slightly acidic soil. They are fast-growing and can be harvested quickly.",
+    Spinach:
+      "Spinach is a leafy green that grows well in slightly acidic soil. It is rich in iron and other nutrients.",
+    Cranberries:
+      "Cranberries prefer acidic soil. They are often used in juices, sauces, and baked goods.",
+    Pineapples:
+      "Pineapples grow best in slightly acidic soil. They are tropical fruits with a sweet and tangy flavor.",
+    Carrots:
+      "Carrots grow well in slightly acidic to neutral soil. They are a nutritious and popular root vegetable.",
+    Cucumbers:
+      "Cucumbers prefer slightly acidic to neutral soil. They are refreshing and commonly used in salads.",
+    Lettuce:
+      "Lettuce grows well in neutral soil. It is a cool-season crop and a common ingredient in salads.",
+    Beans:
+      "Beans can grow in slightly acidic to neutral soil. They are a good source of protein and fiber.",
+    Garlic:
+      "Garlic prefers slightly acidic to neutral soil. It is commonly used as a seasoning in cooking.",
+    Onions:
+      "Onions grow well in neutral soil. They are versatile vegetables used in various dishes worldwide.",
+    Tomatoes:
+      "Tomatoes prefer slightly acidic to neutral soil. They are a key ingredient in many dishes.",
+    Peppers:
+      "Peppers thrive in slightly acidic to neutral soil. They add spice to various cuisines.",
+    Strawberries:
+      "Strawberries prefer slightly acidic soil. They are sweet and nutritious berries.",
+    Beets:
+      "Beets can tolerate slightly acidic to neutral soil. They are nutritious root vegetables.",
+    Broccoli:
+      "Broccoli grows well in neutral soil. It is a nutritious vegetable rich in vitamins and minerals.",
+    Cabbage:
+      "Cabbage prefers slightly acidic to neutral soil. It is a versatile vegetable used in various dishes.",
+    Rice: "Rice paddies generally require neutral to slightly alkaline soil. Rice is a staple food.",
+    Wheat:
+      "Wheat crops prefer slightly acidic to neutral soil. Wheat is a major cereal grain.",
+    Mangoes:
+      "Mango trees prefer slightly acidic soil. Mangoes are tropical fruits with a sweet flavor.",
+    Peaches:
+      "Peach trees prefer slightly acidic soil. Peaches are juicy fruits commonly eaten fresh or used in desserts.",
+    Pears:
+      "Pear trees prefer slightly acidic soil. Pears are sweet and juicy fruits.",
+    Apples:
+      "Apple trees prefer slightly acidic soil. Apples are popular fruits with various culinary uses.",
+    Sugarcane:
+      "Sugarcane grows well in slightly acidic to neutral soil. It is a key crop for sugar production.",
+    Bananas:
+      "Banana plants prefer slightly acidic to neutral soil. Bananas are widely consumed fruits.",
+    Oranges:
+      "Orange trees prefer slightly acidic to neutral soil. Oranges are citrus fruits rich in vitamin C.",
+    Lemons:
+      "Lemon trees prefer slightly acidic soil. Lemons are citrus fruits used in cooking and beverages.",
+    Grapes:
+      "Grapevines prefer slightly acidic to neutral soil. Grapes are used for making wine, juice, and fresh consumption.",
+    Watermelons:
+      "Watermelons grow well in slightly acidic to neutral soil. They are refreshing fruits enjoyed in summer.",
+    // Add more crop descriptions as needed
+  };
+
+  function togglePhSelect() {
+    phSelectContainer.style.display = soilTestSelect.value === "yes" ? "block" : "none";
+    updateCropCards();
+  }
+
+  function updateCropCards() {
+    if (soilTestSelect.value === "yes") {
+      const selectedpH = phSelect.value;
+      const recommendedCrops = cropRecommendations[selectedpH] || [];
+      const limitedCrops = recommendedCrops.slice(0, 6); // Display only the first 6 crops
+      displayCropCards(limitedCrops);
+    } else {
+      cropCardsContainer.innerHTML = "<p>Please conduct a pH soil test <a href='https://soilhealth.dac.gov.in/home' target='_blank'>here</a>.</p>";
+    }
+  }
+
+  function displayCropCards(crops) {
+    cropCardsContainer.innerHTML = "";
+    crops.forEach((crop) => {
+      const card = document.createElement("div");
+      card.classList.add("news-card");
+      card.innerHTML = `
+        <a href="#" class="news-card__card-link"></a>
+        <img src="https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="" class="news-card__image">
+        <div class="news-card__text-wrapper">
+          <h2 class="news-card__title">${crop}</h2>
+          <div class="news-card__post-date">Crop pH: ${phSelect.value}</div>
+          <div class="news-card__details-wrapper">
+            <p class="news-card__excerpt">${cropDescriptions[crop]}</p>
+            <a href="/${crop}" class="news-card__read-more">Read more <i class="fas fa-long-arrow-alt-right"></i></a>
+          </div>
+        </div>
+      `;
+      cropCardsContainer.appendChild(card);
+    });
+  }
+
+  phSelect.addEventListener("change", updateCropCards);
+  soilTestSelect.addEventListener("change", togglePhSelect);
+
+  togglePhSelect(); // Initial check when the page loads
+</script>
+
+<%- include("./partials/footer") %>
+
+
+
+
